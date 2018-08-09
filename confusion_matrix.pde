@@ -48,11 +48,9 @@ int[][] read_matrix(String[] str_matrix, int matrix_size) {
 int[] samples_per_class(int[][] matrix, int matrix_size) {
   int[] class_samples = new int[matrix_size];
   for (int y = 0; y < matrix_size; y++) {
-    int class_sum = 0;
     for (int x = 0; x < matrix_size; x++) {
-      class_sum += matrix[y][x];
+      class_samples[x] += matrix[y][x];
     }
-    class_samples[y] = class_sum;
   }
   return class_samples;
 }
@@ -74,7 +72,7 @@ void draw() {
   // print matrix
   for (int y = 0; y < num_classes; y++) {
     for (int x = 0; x < num_classes; x++) {
-      float relative_score = float(matrix[y][x]) / float(num_class_samples[y]);
+      float relative_score = float(matrix[y][x]) / float(num_class_samples[x]);
       int relative_color = int(255 * relative_score);
       // TODO: make color range white-red.
       fill(relative_color);

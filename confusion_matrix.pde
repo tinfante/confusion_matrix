@@ -6,6 +6,7 @@ int cell_size = 20;
 int spacing = cell_size / 4;
 int border = 20;
 
+
 void setup() {
   size(1400, 1400); // TODO: make dynamic based on matrix size.
   if (args == null) {
@@ -48,9 +49,11 @@ int[][] read_matrix(String[] str_matrix, int matrix_size) {
 int[] samples_per_class(int[][] matrix, int matrix_size) {
   int[] class_samples = new int[matrix_size];
   for (int y = 0; y < matrix_size; y++) {
+    int class_sum = 0;
     for (int x = 0; x < matrix_size; x++) {
-      class_samples[x] += matrix[y][x];
+      class_sum += matrix[y][x];
     }
+    class_samples[y] = class_sum;
   }
   return class_samples;
 }
